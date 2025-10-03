@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using System.Globalization;
 
 namespace MauiAppMinhasCompras.Models
 {
@@ -6,9 +7,10 @@ namespace MauiAppMinhasCompras.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string Description { get; set; }
-        public double Quantity { get; set; }
-        public double Price { get; set; }
+        public string Descricao { get; set; }
+        public double Quantidade { get; set; }
+        public double Preco { get; set; }
+        public double Total { get => Quantidade * Preco; }
 
     }
 }
