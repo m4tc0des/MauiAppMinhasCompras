@@ -87,4 +87,20 @@ public partial class ListProduct : ContentPage
             await DisplayAlert("Ops", ex.Message, "Ok");
         }
     }
+
+    private void lst_produtos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        try
+        {
+            Product p = e.SelectedItem as Product;
+            Navigation.PushAsync(new Views.EditProduct
+            {
+                BindingContext = p,
+            });
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Ops", ex.Message, "Ok");
+        }
+    }
 }
