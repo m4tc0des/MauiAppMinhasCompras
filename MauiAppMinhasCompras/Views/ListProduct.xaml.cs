@@ -18,6 +18,7 @@ public partial class ListProduct : ContentPage
     {
         try
         {
+            lista.Clear();
             List<Product> tmp = await App.Db.GetAll();
             tmp.ForEach(i => lista.Add(i));
         }
@@ -85,6 +86,22 @@ public partial class ListProduct : ContentPage
         catch (Exception ex)
         {
             await DisplayAlert("Ops", ex.Message, "Ok");
+        }
+    }
+
+    private void lst_produtos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        try 
+        {
+            Product p = e.SelectedItem as Product;
+            Navigation.PushAsync(new Views.EditProduct
+            {
+                BindingContext = p
+            });
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Ops", ex.Message, "Ok");
         }
     }
 }
