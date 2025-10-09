@@ -28,7 +28,7 @@ namespace MauiAppMinhasCompras.Models
             {
                     if (value <= 0)
                     {
-                        throw new Exception("Produto nao pode ser inserido com quantidade zerada. Verifique!");
+                        throw new Exception("Produto nao pode ser inserido com quantidade negativa. Verifique!");
                     }
                     _quantidade = value;
                 }
