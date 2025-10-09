@@ -8,4 +8,28 @@ public partial class EditProduct : ContentPage
 	{
 		InitializeComponent();
 	}
+
+
+    private async void ToolbarItem_Clicked(object sender, EventArgs e) //Manipulador de eventos para editar um produto
+    {
+        try
+        {
+            Product produto_anexado = BindingContext as Product;
+            Product p = new Product
+            {
+                Id = produto_anexado.Id,
+                Descricao = txt_descricao.Text,
+                Quantidade = Convert.ToDouble(txt_quantidade.Text),
+                Preco = Convert.ToDouble(txt_preco.Text)
+            };
+
+            await App.Db.Update(p);
+            await DisplayAlert("Sucesso!", "Registro Atualizado", "Ok");
+            await Navigation.PopAsync();
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Ops", ex.Message, "Ok");
+        }
+    }
 }

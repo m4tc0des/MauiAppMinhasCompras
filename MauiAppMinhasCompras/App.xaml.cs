@@ -1,4 +1,5 @@
 ﻿using MauiAppMinhasCompras.Helpers;
+using System.Globalization;
 
 namespace MauiAppMinhasCompras
 {
@@ -24,9 +25,22 @@ namespace MauiAppMinhasCompras
         public App()
         {
             InitializeComponent();
+            var culture = new CultureInfo("pt-BR")
+            {
+                NumberFormat =
+        {
+            NumberDecimalSeparator = ".",
+            CurrencyDecimalSeparator = "."
+               }
+            };
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR"); //Definindo a cultura para portugues do Brasil
 
             MainPage = new NavigationPage(new Views.ListProduct()); //Definindo a main page e a navegacao entre paginas
+
         }
+
 
         //protected override Window CreateWindow(IActivationState? activationState)
         //{
